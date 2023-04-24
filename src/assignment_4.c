@@ -1,8 +1,3 @@
-/**
- * Student name: Mark Armdan
- * Student number: 5489776
- *
- */
 #include "stm32f4xx.h"
 #include "motors.h"
 #include "delay.h"

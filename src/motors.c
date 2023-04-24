@@ -1,8 +1,3 @@
-/**
- * Student name: Mark Armdan
- * Student number: 5489776
- *
- */
 #include "stm32f4xx.h"
 #include "debugled.h"
 
@@ -50,7 +45,7 @@ void initTIM2()
 
 void forward(int speed)
 {
-    TIM1->CCR1 = speed*0.8;
+    TIM1->CCR1 = speed * 0.8;
     TIM1->CCR2 = 0;
     TIM2->CCR2 = 0;
     TIM1->CCR3 = speed;
@@ -87,21 +82,25 @@ void drive(int speed, int turn_rate)
 void pidLineFollower(uint16_t data[2])
 {
     // Turn on the fun LED's when the sensors read a value above 1024
-    if(data[0] > 1024) {
-        setLEDLeft(0xffff-1);
+    if (data[0] > 1024)
+    {
+        setLEDLeft(0xffff - 1);
     }
-    else {
+    else
+    {
         setLEDLeft(0);
     }
-    if(data[1] > 1024) {
-        setLEDRight(0xffff-1);
+    if (data[1] > 1024)
+    {
+        setLEDRight(0xffff - 1);
     }
-    else {
+    else
+    {
         setLEDRight(0);
     }
     double error = ((double)data[0] * 100) / 4095.0 - ((double)data[1] * 100) / 4095.0; // Calculate the difference between the two sensors, this is the error
     double p = kP * error;                                                              // Calculate the proportional term (compensates for error)
-    i += error;                                                                         // Increment the integral term 
+    i += error;                                                                         // Increment the integral term
     double tempI = kI * i;                                                              // Calculate the integral term (overcompensates for accumulated error)
     double d = kD * (error - lastError);                                                // Calculate the derivative term (compensates for sudden changes in error)
 

@@ -1,8 +1,3 @@
-/**
- * Student name: Mark Armdan
- * Student number: 5489776
- *
- */
 #include "stm32f4xx.h"
 #include "motors.h"
 #include "delay.h"
@@ -17,11 +12,11 @@ uint32_t volatile right_tick = 0;
 
 void TIM3_IRQHandler(void)
 {
-    if(TIM1->CCR1 > 0)
+    if (TIM1->CCR1 > 0)
     {
         right_tick++; // Increment tick on the right wheel if it's going forward
     }
-    if(TIM2->CCR2 > 0)
+    if (TIM2->CCR2 > 0)
     {
         right_tick--; // Decrement tick on the right wheel if it's going backwards
     }
@@ -30,11 +25,11 @@ void TIM3_IRQHandler(void)
 
 void TIM1_CC_IRQHandler(void)
 {
-    if(TIM1->CCR3 > 0)
+    if (TIM1->CCR3 > 0)
     {
         left_tick++; // Increment tick on the left wheel if it's going forward
     }
-    if(TIM1->CCR2 > 0)
+    if (TIM1->CCR2 > 0)
     {
         left_tick--; // Decrement tick on the right wheel if it's going backwards
     }

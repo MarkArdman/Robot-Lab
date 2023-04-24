@@ -1,8 +1,3 @@
-/**
- * Student name: Mark Armdan
- * Student number: 5489776
- *
- */
 #include "stm32f4xx.h"
 #include "delay.h"
 
@@ -61,7 +56,8 @@ void initDMA2()
     DMA2_Stream0->CR |= 1 << 0; // Enable DMA2
 }
 
-void initADC() {
+void initADC()
+{
     initDelay();
     initADC1();
     initDMA2();

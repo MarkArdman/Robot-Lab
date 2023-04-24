@@ -1,8 +1,3 @@
-/**
- * Student name: Mark Armdan
- * Student number: 5489776
- *
- */
 #include "stm32f4xx.h"
 #include "debugled.h"
 
@@ -32,7 +27,7 @@ void TIM4_IRQHandler(void)
     if (interrupt_front_flag == 0)
     {
         time_stamp1_front = time; // Store time stamp 1
-        interrupt_front_flag++;  // Set flag to 1
+        interrupt_front_flag++;   // Set flag to 1
     }
     else
     {
@@ -54,7 +49,7 @@ void TIM4_IRQHandler(void)
             frontCallback(width_front);
         }
 
-        TIM4->CNT = 0; // Reset counter
+        TIM4->CNT = 0;          // Reset counter
         interrupt_front_flag--; // Set flag to 0
     }
     TIM4->SR &= ~(1 << 3); // Clear interrupt flag
@@ -62,13 +57,13 @@ void TIM4_IRQHandler(void)
 
 void TIM1_TRG_COM_TIM11_IRQHandler(void)
 {
-    
+
     uint32_t time = TIM11->CCR1;
     // Check if interrupt flag is set
     if (interrupt_side_flag == 0)
     {
         time_stamp1_side = time; // Store time stamp 1
-        interrupt_side_flag++; // Set flag to 1
+        interrupt_side_flag++;   // Set flag to 1
     }
     else
     {
@@ -90,7 +85,7 @@ void TIM1_TRG_COM_TIM11_IRQHandler(void)
             sideCallback(width_side);
         }
 
-        TIM11->CNT = 0; // Reset counter
+        TIM11->CNT = 0;        // Reset counter
         interrupt_side_flag--; // Set flag to 0
     }
     TIM11->SR &= ~(1 << 1); // Clear interrupt flag
